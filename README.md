@@ -1,8 +1,10 @@
-# � Broken Access Control Lab — Gerenciador de Senhas (v1-insecure)
+# 🔐 Broken Access Control Lab — Gerenciador de Senhas (Insecure)
 
 > Versão **intencionalmente vulnerável** de um Gerenciador de Senhas fullstack.
 > Este projeto demonstra **8 falhas de Broken Access Control (BAC)** usando arquitetura MVC clássica.
 > Criado exclusivamente para fins educacionais — **nunca use em produção**.
+>
+> 🔗 **Repositório da versão segura (corrigida):** [gerenciador-de-senhas-secure](https://github.com/gabriela-venancio-valadao/gerenciador-de-senhas-secure)
 
 ![Node.js](https://img.shields.io/badge/Node.js-Express_5-339933?logo=node.js)
 ![React](https://img.shields.io/badge/React_19-Vite_7-61DAFB?logo=react)
@@ -354,7 +356,7 @@ const updateUser = (req, res) => {
 - [Node.js](https://nodejs.org/) v18+
 - npm (vem com o Node)
 
-### Backend (porta 3000)
+### Backend (porta 3001)
 
 ```bash
 cd backend
@@ -378,34 +380,35 @@ Após rodar backend e frontend, use o navegador ou ferramentas como **Postman**,
 
 ```bash
 # 1. IDOR — acessar perfil de outro usuário
-curl http://localhost:3000/api/users/3
+curl http://localhost:3001/api/users/3
 
 # 2. Admin sem auth — acessar painel admin
-curl http://localhost:3000/api/admin/dashboard
+curl http://localhost:3001/api/admin/dashboard
 
 # 3. Parameter Tampering — virar admin
-curl -X PUT http://localhost:3000/api/users/2 \
+curl -X PUT http://localhost:3001/api/users/2 \
   -H "Content-Type: application/json" \
   -d '{"role": "admin"}'
 
 # 4. Deletar qualquer usuário
-curl -X DELETE http://localhost:3000/api/users/1
+curl -X DELETE http://localhost:3001/api/users/1
 
 # 5. Acessar arquivo de outro usuário
-curl http://localhost:3000/api/files/invoice_maria.pdf
+curl http://localhost:3001/api/files/invoice_maria.pdf
 ```
 
 ---
 
 ## ⚠️ Aviso Importante
 
-> A versão **v1 (insecure)** contém vulnerabilidades **intencionais** e foi criada
+> Este repositório contém vulnerabilidades **intencionais** e foi criado
 > **exclusivamente para fins educacionais**.
 >
 > 🚫 **NUNCA utilize esse código em produção.**
 >
 > Este projeto é um **laboratório de segurança** para aprender como falhas de
-> Broken Access Control funcionam e como corrigi-las.
+> Broken Access Control funcionam. Para ver como corrigi-las, consulte o
+> [repositório da versão segura](https://github.com/gabriela-venancio-valadao/gerenciador-de-senhas-secure).
 
 ---
 
@@ -417,4 +420,19 @@ curl http://localhost:3000/api/files/invoice_maria.pdf
 
 ---
 
-**Feito com 💀 para aprender quebrando — a versão segura (v2) será construída em outro branch.**
+## 🔗 Repositórios do Projeto
+
+Este projeto educacional é divido em **dois repositórios independentes**, cada um com seu próprio código e histórico:
+
+| Repositório | Descrição | Status |
+|-------------|-----------|--------|
+| **[gerenciador-de-senhas-insecure](https://github.com/gabriela-venancio-valadao/gerenciador-de-senhas-insecure)** | Versão vulnerável — 8 falhas BAC propositais | 📍 Você está aqui |
+| **[gerenciador-de-senhas-secure](https://github.com/gabriela-venancio-valadao/gerenciador-de-senhas-secure)** | Versão corrigida — todas as falhas resolvidas | 🔒 Repositório separado |
+
+> **Por que dois repositórios?**
+> Cada versão tem sua própria base de código completa, facilitando a comparação
+> lado a lado entre o código vulnerável e o código seguro.
+
+---
+
+**Feito com 💀 para aprender quebrando — veja o [repositório seguro](https://github.com/gabriela-venancio-valadao/gerenciador-de-senhas-secure) para aprender corrigindo.**
